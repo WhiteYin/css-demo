@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/*展示区域背景*/
+#playground {
+    position: relative;
+    height: 300px;
+    line-height: 300px;
+    background: #ddd;
+}
+/*展示的div块*/
+#show-box {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background: #FFFF99;
+}
+/*下拉框的父级div*/
+#nav-box {
+    width: 200px;
+    margin: auto;
+}
+/*下拉框首部的文本*/
+#nav{
+    margin: 10px auto 0;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #ddd;
+}
+/*下拉框首部的文本*/
+#nav-text {
+    display: inline-block;
+    width: 150px;
+}
+/*下拉框首部的箭头*/
+#nav i{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 15px;
+    background: url(../img/arrow.png) 0 0 no-repeat;
+    -webkit-transition: transform 0.2s ease-out;
+    -moz-transition: transform 0.2s ease-out;
+    transition: transform 0.2s ease-out;
+}
+/*箭头的旋转动画*/
+#nav-box:hover i {
+    transform: rotateZ(-180deg);
+}
+/*下拉框选项的包裹div块*/
+#nav-content {
+    display: none;
+    height: 92px;
+    overflow-y: auto;
+} 
+/*当用户鼠标移动到下拉框时，下拉框选项显示*/
+.show #nav-content {
+    display: block;
+}
+/*选项*/
+.option{
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.option:hover{
+    background: #99CCFF;
+    color: #ffffff;
+}
+/*第一个选项：背景*/
+.background {
+    background: url(../img/avatar-mini.jpg) center no-repeat #CECF96 scroll !important;
+}
