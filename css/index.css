@@ -6,21 +6,39 @@
 #playground {
     position: relative;
     height: 300px;
-    line-height: 300px;
     background: #ddd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/*显示样式的描述*/
+#description{
+    width: 200px;
+    height: 250px;
+    color: #38668B;
+    border: 1px solid #9ADD4D;
+    box-shadow: -5px 5px rgba(154,221,77,0.5);
 }
 /*展示的div块*/
 #show-box {
-    position: absolute;
+    /*position: absolute;
     top:0;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: auto;*/
     width: 100px;
     height: 100px;
     text-align: center;
     background: #FFFF99;
+}
+/*样式代码显示*/
+#editor{
+    width: 200px;
+    height: 250px;
+    color: #9C9C37;
+    border: 1px solid #75ACEB;
+    box-shadow: 5px 5px rgba(117,172,235,0.5);
 }
 /*下拉框的父级div*/
 #nav-box {
@@ -78,4 +96,23 @@
 /*第一个选项：背景*/
 .background {
     background: url(../img/avatar-mini.jpg) center no-repeat #CECF96 scroll !important;
+}
+/*第二个选项：背景颜色*/
+.background-color{
+    background-color: #99CCFF !important;
+}
+/*第三个选项：背景图片*/
+.background-image {
+    background-image: url(../img/avatar-mini.jpg) !important;
+}
+/*第四个选项：背景是否重复*/
+#playground .background-repeat {
+    background-image: url(../img/avatar-mini.jpg) !important;
+    background-repeat: no-repeat;
+}
+/*第五个选项：背景起始位置*/
+#playground .background-position {
+    background-image: url(../img/avatar-mini.jpg) !important;
+    background-repeat: no-repeat;
+    background-position: center left;
 }
