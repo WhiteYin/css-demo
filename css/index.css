@@ -27,9 +27,12 @@
     left: 0;
     right: 0;
     margin: auto;*/
+    display: flex;
+    align-items: center;
     width: 100px;
     height: 100px;
     text-align: center;
+    padding: 20px;
     background: #FFFF99;
 }
 /*样式代码显示*/
@@ -115,4 +118,23 @@
     background-image: url(../img/avatar-mini.jpg) !important;
     background-repeat: no-repeat;
     background-position: center left;
+}
+/*第六个选项：背景绘制区域*/
+#playground .background-clip {
+    background-color: #FFFF99;
+    background-clip: content-box;
+    border: 1px dashed #ffffff;
+}
+#playground .background-clip::after {
+    content: "背景绘制内容区域";
+}
+/*第七个选项：背景定位区域*/
+#playground .background-origin {
+    background-image: url(../img/avatar-mini.jpg);
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    border: 10px dashed #ffffff;
+}
+#playground .background-origin::after {
+    content: "背景定位在边框区域";
 }
