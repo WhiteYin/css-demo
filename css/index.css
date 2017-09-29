@@ -138,3 +138,13 @@
 #playground .background-origin::after {
     content: "背景定位在边框区域";
 }
+/*第八个选项：背景图片大小*/
+#playground .background-size {
+    background-image: url(../img/avatar.jpg);
+    background-repeat: no-repeat;
+    background-size: 80px 50px;
+}
+#playground .background-size::after {
+    text-align: left;
+    content: "背景图片大小为80px和50px";
+}
