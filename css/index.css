@@ -148,3 +148,22 @@
     text-align: left;
     content: "背景图片大小为80px和50px";
 }
+/*第九个选项：边框*/
+#playground .border {
+    border-bottom: 5px dashed #75ACEB;
+    border-top: 1px solid #38668B;
+    border-left: 10px dotted #F348AC;
+    border-right: 15px solid #43CE27;
+}
+#playground .border::after {
+    content: "四条边有不同的样式";
+}
+/*第10个选项：轮廓*/
+#playground .outline {
+    border: 5px solid #F348AC;
+    outline: 5px dashed #000000;
+}
+#playground .outline::after {
+    text-align: left;
+    content: "轮廓是绘制于元素周围的一条线，位于边框边缘的外围,也就是黑色部分。";
+}
