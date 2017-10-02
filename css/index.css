@@ -167,3 +167,20 @@
     text-align: left;
     content: "轮廓是绘制于元素周围的一条线，位于边框边缘的外围,也就是黑色部分。";
 }
+/*第11个选项：边框图片*/
+#playground .border-image{
+    border: 5px solid #000;
+    border-image-source:url(../img/border.png);
+    border-image-slice: 30;
+    border-image-width: 5;
+    border-image-outset: 5px;
+    border-image-repeat: round; 
+}
+/*第12个选项：边框圆角*/
+#playground .border-radius{
+    border: 5px solid #000;
+    border-top-left-radius:5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 50%;
+}
