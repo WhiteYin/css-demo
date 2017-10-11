@@ -78,13 +78,13 @@
 }
 /*下拉框选项的包裹div块*/
 #nav-content {
-    display: none;
+    visibility: hidden;
     height: 92px;
     overflow-y: auto;
 } 
 /*当用户鼠标移动到下拉框时，下拉框选项显示*/
 .show #nav-content {
-    display: block;
+    visibility: visible;
 }
 /*选项*/
 .option{
@@ -183,4 +183,13 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 50%;
+}
+
+#canvas-box {
+    text-align: center;
+}
+/*画布*/
+#canvas {
+    display: inline-block;
+    border: 1px solid black;
 }
