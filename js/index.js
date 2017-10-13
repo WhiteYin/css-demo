@@ -7,7 +7,7 @@ $(document).ready(
         var boxClass = '';
         var canvas = document.querySelector("#canvas");
         var context = canvas.getContext("2d");
-
+        context.save();
         //当鼠标移入下拉框区域，新增类样式.show
         navBox.bind('mouseenter', function () {
             $(this).addClass('show');
@@ -161,6 +161,7 @@ $(document).ready(
         //图片平铺
         $('#draw-img-repeat').bind('click', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
             context.beginPath();
 
             var img = new Image();
@@ -175,6 +176,7 @@ $(document).ready(
         //图片裁剪
         $('#clip-img').bind('click', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
+            context.save();
             context.beginPath();
             context.arc(200, 200, 100, 0, 2 * Math.PI);
             
@@ -185,6 +187,84 @@ $(document).ready(
             img.onload = function () {
                 context.drawImage(img, 100, 100);
             }
+        });
+        //图片反色
+        $('#anti-color').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+            context.beginPath();
+
+            var img = new Image();
+            img.src = '../img/avatar.jpg';
+            img.onload = function () {
+                context.drawImage(img, 50, 50, 150, 150);
+                var imgData = context.getImageData(50, 50, 150, 150);
+                var data = imgData.data;
+                for (let i = 0; i < data.length; i += 4){
+                    data[i] = 255 - data[i];
+                    data[i + 1] = 255 - data[i + 1];
+                    data[i + 2] = 255 - data[i + 2];
+                }
+                context.putImageData(data,200,200);
+            }
+        });
+        //线性渐变
+        $('#line-gradient').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+
+            var horizen_gradient = context.createLinearGradient(0, 0, 400, 0);
+            horizen_gradient.addColorStop(0, '#fff');
+            horizen_gradient.addColorStop(1, '#231');
+
+            var vertical_gradient = context.createLinearGradient(0, 0, 0, 400);
+            vertical_gradient.addColorStop(0, '#000');
+            vertical_gradient.addColorStop(1, '#a71');
+
+            var diagonal_gradient = context.createLinearGradient(0, 0, 400, 400);
+            diagonal_gradient.addColorStop(0, '#285');
+            diagonal_gradient.addColorStop(1, '#a0a');
+
+            context.beginPath();
+            context.fillStyle = horizen_gradient;
+            context.fillRect(0, 0, 100, 400);
+
+            context.beginPath();
+            context.fillStyle = vertical_gradient;
+            context.fillRect(100, 0, 100, 400);
+
+            context.beginPath();
+            context.fillStyle = diagonal_gradient;
+            context.fillRect(200, 0, 200, 400);
+        });
+        //径向渐变
+        $('#circle-gradient').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+
+            var gradient = context.createRadialGradient(200, 200, 50, 200, 200, 150);
+            gradient.addColorStop(0, '#ddd');
+            gradient.addColorStop(0.5, '#a1a');
+            gradient.addColorStop(1, '#2b7');
+
+            context.beginPath();
+            context.fillStyle = gradient;
+            context.arc(200, 200, 200, 0, 2 * Math.PI);
+            context.fill();
+        });
+        //阴影
+        $('#shadow').bind('click', function () {
+            context.clearRect(0, 0, 400, 400);
+            context.restore();
+
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = 0;
+            context.shadowColor = '#312';
+            context.shadowBlur = 5;
+
+            context.beginPath();
+            context.fillStyle = '#481'
+            context.fillRect(100, 100, 100, 100);
         })
     }
 );
