@@ -8,6 +8,7 @@ $(document).ready(
         var canvas = document.querySelector("#canvas");
         var context = canvas.getContext("2d");
         context.save();
+
         //当鼠标移入下拉框区域，新增类样式.show
         navBox.bind('mouseenter', function () {
             $(this).addClass('show');
@@ -31,6 +32,7 @@ $(document).ready(
             //展示div块添加指定的类
             box.addClass(boxClass);
         });
+
         //绘制直线
         $('#draw-lines').bind('click', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -44,7 +46,7 @@ $(document).ready(
         //绘制不同粗细的直线
         $('#linewidth-lines').bind('click', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             context.beginPath();
             context.lineWidth = 5;
             context.moveTo(10, 100);
@@ -56,7 +58,7 @@ $(document).ready(
             context.moveTo(10, 200);
             context.lineTo(300, 200);
             context.stroke();
-            
+
             context.beginPath();
             context.lineWidth = 20;
             context.moveTo(10, 300);
@@ -70,7 +72,7 @@ $(document).ready(
             context.lineWidth = 10;
             context.lineJoin = 'bavel';
             context.lineCap = 'round';
-            
+
             context.moveTo(100, 350);
             context.lineTo(150, 100);
             context.lineTo(200, 350);
@@ -84,7 +86,7 @@ $(document).ready(
             context.beginPath();
             context.lineWidth = 10;
 
-            context.setLineDash([20, 10,10,10]);
+            context.setLineDash([20, 10, 10, 10]);
             context.moveTo(100, 200);
             context.lineTo(300, 200);
             context.stroke();
@@ -95,8 +97,8 @@ $(document).ready(
             context.beginPath();
             context.strokeStyle = '#0f0';
             context.lineJoin = 'round';
-            context.moveTo(50,50);
-            context.lineTo(250,350);
+            context.moveTo(50, 50);
+            context.lineTo(250, 350);
             context.lineTo(250, 50);
             context.closePath();
             context.stroke();
@@ -155,7 +157,7 @@ $(document).ready(
             //图片加载完再绘画
             img.onload = function () {
                 context.drawImage(img, 200, 200, 100, 100);
-                context.drawImage(img, 0, 0, 100, 100, 100, 100,100, 100);
+                context.drawImage(img, 0, 0, 100, 100, 100, 100, 100, 100);
             }
         });
         //图片平铺
@@ -179,11 +181,11 @@ $(document).ready(
             context.save();
             context.beginPath();
             context.arc(200, 200, 100, 0, 2 * Math.PI);
-            
-            context.clip();
 
             var img = new Image();
             img.src = '../img/avatar.jpg';
+            context.clip();
+
             img.onload = function () {
                 context.drawImage(img, 100, 100);
             }
@@ -196,18 +198,85 @@ $(document).ready(
 
             var img = new Image();
             img.src = '../img/avatar.jpg';
+
             img.onload = function () {
                 context.drawImage(img, 50, 50, 150, 150);
                 var imgData = context.getImageData(50, 50, 150, 150);
                 var data = imgData.data;
-                for (let i = 0; i < data.length; i += 4){
+                for (let i = 0; i < data.length; i += 4) {
                     data[i] = 255 - data[i];
                     data[i + 1] = 255 - data[i + 1];
                     data[i + 2] = 255 - data[i + 2];
                 }
-                context.putImageData(data,200,200);
+                context.putImageData(imgData, 200, 200);
             }
         });
+        //黑白图片
+        $('#grey-img').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+            context.beginPath();
+
+            var img = new Image();
+            img.src = '../img/avatar.jpg';
+            var avg = 0;
+
+            img.onload = function () {
+                context.drawImage(img, 50, 50, 150, 150);
+                var imageData = context.getImageData(50, 50, 150, 150);
+                var data = imageData.data;
+                for (let i = 0; i < data.length; i += 4) {
+                    avg = (data[i] + data[i + 1] + data[i + 2]) / 2;
+                    data[i] = avg;
+                    data[i + 1] = avg;
+                    data[i + 2] = avg;
+                }
+                context.putImageData(imageData, 200, 200);
+            }
+        });
+        //美白图片
+        $('#white-img').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+            context.beginPath();
+
+            var avg = 90;
+            var img = new Image();
+            img.src = '../img/avatar.jpg';
+            img.onload = function () {
+                context.drawImage(img, 50, 50, 150, 150);
+                var imageData = context.getImageData(50, 50, 150, 150);
+                var data = imageData.data;
+                for (let i = 0; i < data.length; i += 4) {
+                    data[i] += avg;
+                    data[i + 1] += avg;
+                    data[i + 2] += avg;
+                }
+                context.putImageData(imageData, 200, 200);
+            }
+        });
+        //绿色蒙板
+        $('#green-board').bind('click', function () {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.restore();
+            context.beginPath();
+
+            var avg = 0;
+            var img = new Image();
+            img.src = '../img/avatar.jpg';
+            img.onload = function () {
+                context.drawImage(img, 50, 50, 150, 150);
+                var imageData = context.getImageData(50, 50, 150, 150);
+                var data = imageData.data;
+                for (let i = 0; i < data.length; i += 4) {
+                    avg = (data[i] + data[i + 1] + data[i + 2])/2;
+                    data[i] = 0;
+                    data[i + 1] = avg;
+                    data[i + 2] = 0;
+                }
+                context.putImageData(imageData, 200, 200);
+            }
+        })
         //线性渐变
         $('#line-gradient').bind('click', function () {
             context.clearRect(0, 0, canvas.width, canvas.height);
