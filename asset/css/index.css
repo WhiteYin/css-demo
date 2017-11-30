@@ -184,7 +184,21 @@
     border-bottom-right-radius: 20px;
     border-top-right-radius: 50%;
 }
-
+/*第13个选项：线性渐变*/
+#playground .linear-gradient{
+    background: -webkit-linear-gradient(red,blue);
+    background: -o-linear-gradient(red,blue);
+    background: -moz-linear-gradient(red,blue);
+    background: linear-gradient(red,blue);
+}
+/*第14个选项：进度条*/
+#playground .progress-bar-striped{
+    background-color: rgb(19, 206, 28);
+    background-image: linear-gradient(45deg,rgba(255,255,255,0.15) 25%,transparent 25%,
+                                    transparent 50%,rgba(255,255,255,0.15) 50%,
+                                    rgba(255,255,255,0.15) 75%,transparent 75%);
+    background-size: 40px 40px;
+}
 #canvas-box {
     text-align: center;
 }

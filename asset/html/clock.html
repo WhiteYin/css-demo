@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>倒计时</title>
+    </head>
+
+    <body>
+        <span id="year"></span>年<span id="month"></span>月<span id="day"></span>日<br />
+        <span id="hour"></span>时<span id="minute"></span>分<span id="second"></span>秒<br />
+    </body>
+
+    <script>
+        var deadline = new Date(2017,11,23,0,0,0);
+        var year = document.querySelector("#year");
+        var month = document.querySelector("#month");
+        var day = document.querySelector("#day");
+        var hour = document.querySelector("#hour");
+        var minute = document.querySelector("#minute");
+        var second = document.querySelector("#second");
+        var timer = function(){
+            var time = new Date();
+            var ts = deadline - time;
+            var yy = parseInt(ts / 1000 / 60 / 60 / 24/ 30 / 365, 10);//计算剩余的年数
+            var mon = parseInt(ts / 1000 / 60 / 60 / 24/ 30, 10);//计算剩余的月数
+            var dd = parseInt(ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数  
+            var hh = parseInt(ts / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数  
+            var mm = parseInt(ts / 1000 / 60 % 60, 10);//计算剩余的分钟数  
+            var ss = parseInt(ts / 1000 % 60, 10);//计算剩余的秒数  
+            year.innerHTML = yy;
+            month.innerHTML = mon;
+            day.innerHTML = dd;
+            hour.innerHTML = hh;
+            minute.innerHTML = mm;
+            second.innerHTML = ss;
+            setTimeout(timer,1000);
+        }
+        timer();
+    </script>
+</html>
